@@ -3,17 +3,16 @@ class Triangle
   attr_accessor :side1, :side2, :side3, :sides
 
   def initialize(side1, side2, side3)
-    side1 = @side1
-    side2 = @side2
-    side3 = @side3
+    @side1 = side1
+    @side2 = side2
+    @side3 = side3
     @sides = [@side1, @side2, @side3]
-    binding.pry
   end
 
   def valid?
     if @sides.any? {|side| side < 0}
       false
-    elsif @sides.any? {|side| side > (@sides - side.split).sum}
+    elsif @sides.any? {|side| side > (@sides - side.to_s.split).sum}
       false
     else
       true
