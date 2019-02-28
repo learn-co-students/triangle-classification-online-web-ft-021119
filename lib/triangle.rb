@@ -10,15 +10,10 @@ class Triangle
   end
 
   def valid?
-    if @sides.any? {|side| side <= 0}
-      # [1] pry(#<Triangle>)> @sides=> [0, 0, 0]
-      # [2] pry(#<Triangle>)> @sides.any? {|side| side = 0}=> true
-      # [3] pry(#<Triangle>)> @sides.any? {|side| side <= 0}=> true
-      #binding.pry
+    sorted = @sides.sort
+    if @sides.any? {|side| side <= 0 || side == nil}
       raise TriangleError
-    elsif @sides[0] >= @sides[1] + @sides[2] ||
-      @sides[1] >= @sides[0] + @sides[2] ||
-      @sides[2] >= @sides[0] +  @sides[1]
+    elsif sorted[0] + sorted[1] <= sorted[2]
       raise TriangleError
     else
       true
