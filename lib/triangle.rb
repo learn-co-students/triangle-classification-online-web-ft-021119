@@ -15,14 +15,11 @@ class Triangle
       # [2] pry(#<Triangle>)> @sides.any? {|side| side = 0}=> true
       # [3] pry(#<Triangle>)> @sides.any? {|side| side <= 0}=> true
       #binding.pry
-      false
-    elsif @sides[0] > @sides[1] + @sides[2] ||
-      @sides[1] > @sides[0] + @sides[2] ||
-      @sides[2] > @sides[0] +  @sides[1]
-      false
-    #should work in ruby 2.5 but does not work in 2.3.1
-    # elsif @sides.any? {|side| side > (@sides - side.to_s.split[0].to_i).sum}
-    #   false
+      raise TriangleError
+    elsif @sides[0] >= @sides[1] + @sides[2] ||
+      @sides[1] >= @sides[0] + @sides[2] ||
+      @sides[2] >= @sides[0] +  @sides[1]
+      raise TriangleError
     else
       true
     end
@@ -43,12 +40,12 @@ class Triangle
     end
   end
 
-  # class TriangleError < StandardError
-  #   def i_must_have_truth(value)
-  #     if value == false
-  #       raise TypeError, "Invalid triangle!"
-  #     end
-  #   end
-  # end
+  class TriangleError < StandardError
+    def i_must_have_truth(value)
+      if value == false
+        raise TypeError, "Invalid triangle!"
+      end
+    end
+  end
 
 end
