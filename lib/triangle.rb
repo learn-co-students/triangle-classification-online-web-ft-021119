@@ -11,8 +11,11 @@ class Triangle
   end
 
   def kind
+    #smallest side goes first for shorter inequality check:
     array = [@l1, @l2, @l3].sort
+    #inequality check:
     equality = array[0] + array[1] > array[2]
+    #check for negative, 0, or nil value
     if array.any?{|l| l <= 0 || l == nil}
       raise TriangleError
     elsif array.uniq.size == 1
