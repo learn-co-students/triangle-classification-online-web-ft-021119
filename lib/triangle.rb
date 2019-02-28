@@ -10,10 +10,15 @@ class Triangle
   end
 
   def valid?
-    if @sides.any? {|side| side < 0}
+    if @sides.any? {|side| side <= 0}
       false
-    elsif @sides.any? {|side| side > (@sides - side.to_s.split).sum}
+    elsif @sides[0] > @sides[1] + @sides[2] ||
+      @sides[1] > @sides[0] + @sides[2] ||
+      @sides[2] > @sides[0] +  @sides[1]
       false
+    #should wok in ruby 2.5 but does not work in 2.3.1
+    # elsif @sides.any? {|side| side > (@sides - side.to_s.split).sum}
+    #   false
     else
       true
     end
