@@ -32,7 +32,7 @@ class Triangle
 
   class TriangleError < StandardError
     def message
-      puts "Your triangle should not violate triangle inequality"
+      puts "Your triangle should not violate triangle inequality."
     end
   end
 
